@@ -1,5 +1,6 @@
-[![CI](https://github.com/MilenaKalo/weather-frontend/actions/workflows/CI.yml/badge.svg)](https://github.com/MilenaKalo/weather-frontend/actions/workflows/CI.yml)
-# weather-frontend
+[![Deploy to Heroku](https://github.com/lucasish/weatherfrontend/actions/workflows/main.yml/badge.svg)](https://github.com/lucasish/weatherfrontend/actions/workflows/main.yml)
+
+# weatherfrontendnew
 
 ## Project setup
 ```
