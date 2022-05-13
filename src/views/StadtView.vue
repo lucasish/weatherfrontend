@@ -40,11 +40,12 @@ export default {
   },
   methods: {
     mounted () {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
       const requestOptions = {
         method: 'GET',
         redirect: 'follow'
       }
-      fetch('http://localhost:8080/api/v1/weatherofcity', requestOptions)
+      fetch(endpoint, requestOptions)
         .then(response => response.json())
         .then(result => result.forEach(city => {
           this.citys.push(city)
