@@ -22,20 +22,7 @@ export default {
   name: 'StadtView',
   data () {
     return {
-      citys: [
-        {
-          id: 1,
-          name: 'Potsdam',
-          unit: 'imperial',
-          temp: 30
-        },
-        {
-          id: 2,
-          name: 'Berlin',
-          unit: 'imperial',
-          temp: 19
-        }
-      ]
+      citys: []
     }
   },
   methods: {
