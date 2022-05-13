@@ -8,7 +8,22 @@
           <div class="card-body">
             <h5 class="card-title">{{ city.name }}</h5>
             <p class="card-text">
-              {{ city.name }} {{ city.unit }} ist {{ city.temp }} und
+              {{ city.name }} {{ city.unit }} und
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col" v-for="city in citys" :key="city.id">
+        <div class="card h-100">
+          <img src="../assets/logo.png" class="card-img-top" :alt="city.name">
+          <div class="card-body">
+            <h5 class="card-title">{{ city.name }}</h5>
+            <p class="card-text">
+              {{ city.name }} {{ city.unit }} und ist ein anderer Test
             </p>
           </div>
         </div>
