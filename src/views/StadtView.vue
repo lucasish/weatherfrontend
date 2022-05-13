@@ -6,7 +6,7 @@
         <div class="card h-100">
           <img src="../assets/logo.png" class="card-img-top" :alt="city.name">
           <div class="card-body">
-            <h5 class="card-title">{{ city.firstName }} {{ city.lastName }}</h5>
+            <h5 class="card-title">{{ city.name }}</h5>
             <p class="card-text">
               {{ city.name }} {{ city.unit }} ist {{ city.temp }} und
             </p>
