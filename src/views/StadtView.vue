@@ -37,6 +37,20 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    mounted () {
+      const requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      }
+      fetch('http://localhost:8080/api/v1/weatherofcity', requestOptions)
+        .then(response => response.json())
+        .then(result => result.forEach(city => {
+          this.citys.push(city)
+        }))
+        .catch(error => console.log('error', error))
+    }
   }
 }
 </script>
