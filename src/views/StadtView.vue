@@ -4,7 +4,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
         <div class="card h-100">
-          <img src="../assets/logo.png" class="card-img-top" :alt="city.name">
+          <img :src="getPicture(city)" class="card-img-top" :alt="city.name">
           <div class="card-body">
             <h5 class="card-title">{{ city.name }}</h5>
             <p class="card-text">
@@ -19,7 +19,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
         <div class="card h-100">
-          <img src="../assets/logo.png" class="card-img-top" :alt="city.name">
+          <img :src="getPicture(city)" class="card-img-top" :alt="city.name">
           <div class="card-body">
             <h5 class="card-title">{{ city.name }}</h5>
             <p class="card-text">
@@ -41,6 +41,9 @@ export default {
     }
   },
   methods: {
+    getPicture (city) {
+      return require('../assets/logo - Kopie.png')
+    },
     mounted () {
       const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
       const requestOptions = {
