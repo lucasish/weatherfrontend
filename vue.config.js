@@ -2,6 +2,6 @@
 module.exports = {
   devServer: {
     port: '3000',
-    proxy: 'https://localhost:8080' // wg cors fehler hinzugefügt
+    proxy: 'https://htwweatherapp.herokuapp.com/api' // wg cors fehler hinzugefügt
   }
 }
