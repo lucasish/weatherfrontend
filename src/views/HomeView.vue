@@ -5,7 +5,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
         <div class="card h-100">
-            <img :src= "https://openweathermap.org/img/w/${icon}.png"  class="card-img-top" :alt="city.name">
+            <img :src= "'https://openweathermap.org/img/w/' + '${icon}.png'"  class="card-img-top" :alt="city.name">
             <div id="title" class="card-body">
               <h5 id="temp" class="card-title"> {{city.name}}</h5>
               <p id="location" class="card-text">
@@ -61,8 +61,8 @@ export default {
     }
     let obj
     let i = 0
-    for(i; i < citys.length; i++){
-    fetch('https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${citys[i].name}&units=metric', requestOptions)
+    for(i; i < this.citys.length; i++){
+    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[i].name}&units=metric`, requestOptions)
       .then(res => {
         if (res.ok) { return res.json() } else {
           throw new Error('Error')
