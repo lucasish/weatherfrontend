@@ -5,14 +5,14 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
         <div class="card h-100">
-            <img :src= "'https://openweathermap.org/img/w/' + '${icon}.png'"  class="card-img-top" :alt="city.name">
+            <img :src= "'https://openweathermap.org/img/w/03d.png'"  class="card-img-top" :alt="city.name">
             <div id="title" class="card-body">
               <h5 id="temp" class="card-title"> {{city.name}}</h5>
               <p id="location" class="card-text">
                In {{ city.name }}:
-                Temperatur {{ temp }} Grad Celsius.
-                Wetter : {{weather.main}}
-                Hinweis: {{weather.description}}
+                Temperatur {{city.temp}} Grad Celsius.
+                Wetter : {{city.weather.main}}
+                Hinweis: {{city.weather.description}}
               </p>
             </div>
           </div>
@@ -29,20 +29,28 @@ export default {
     return {
       citys: [{
         id: 1,
-        name: 'Berlin'
+        name: 'Berlin',
+        temp: 0,
+        main: ' ',
+        weather: ' ',
+        icon: ' '
       },
         {
           id: 2,
-          name: 'London'
+          name: 'London',
+          temp: 0,
+          main: ' ',
+          weather: ' ',
+          icon: ' '
         },
         {
           id: 3,
-          name: 'Paris'
-        }],
-      temp: 0,
-      main: null,
-      weather: null,
-      icon: null
+          name: 'Paris',
+          temp: 0,
+          main: ' ',
+          weather: ' ',
+          icon: ' '
+        }]
     }
   },
   methods: {
@@ -70,10 +78,10 @@ export default {
       })
       .then(data => {
         obj = data
-        this.main = obj.main
-        this.temp = obj.main.temp
-        this.weather = obj.weather
-        this.icon = obj.weather.icon
+        this.citys[i].main = obj.main
+        this.citys[i].temp = obj.main.temp
+        this.citys[i].weather = obj.weather
+        this.citys[i].icon = obj.weather.icon
       })
       .catch(error => console.log('error', error))
 }
