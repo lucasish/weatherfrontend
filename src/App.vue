@@ -5,10 +5,12 @@
 
 <script>
 import Navbar from './components/Navbar'
+import HelloWorld from '@/components/HelloWorld'
 
 export default {
   name: 'App',
-  components: { Navbar }
+  // eslint-disable-next-line vue/no-unused-components
+  components: { Navbar, HelloWorld }
 }
 </script>
 
@@ -19,6 +21,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #061321;
+}
+
+body{
+  background: linear-gradient(to right, #88b5e3, #FFFFFF)
 }
 
 nav {

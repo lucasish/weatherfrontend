@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-light navbar-dark bg-primary">
+  <nav class="navbar navbar-light navbar-dark bg-primary bg-opacity-50">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Wetter</a>
       <form class="d-flex">

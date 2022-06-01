@@ -1,10 +1,10 @@
 <template>
   <h1>Home</h1>
-  <div class=".bg-info.bg-gradient bg-opacity-10"></div>
+  <div class=".bg-info.bg-gradient bg-opacity-25"></div>
   <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col" >
-        <div class="card h-100">
+      <div class="col-6 mx-auto" >
+        <div class="card border-primary mb-3 h-100 justify-content-center">
             <img :src= "`https://openweathermap.org/img/w/${this.citys[1].icon}.png`"  class="card-img-top" :alt="citys[1].name">
             <div id="title" class="card-body">
               <h5 id="temp" class="card-title"> {{citys[1].name}}</h5>
@@ -15,8 +15,8 @@
             </div>
           </div>
         </div>
-      <div class="col"  >
-        <div class="card h-100" >
+      <div class="col-6 mx-auto"  >
+        <div class="card border-primary mb-3 h-100 justify-content-center" >
           <img :src= "`https://openweathermap.org/img/w/${this.citys[0].icon}.png`"  class="card-img-top" :alt="citys[0].name">
           <div  class="card-body">
             <h5  class="card-title"> {{citys[0].name}}</h5>
@@ -27,8 +27,8 @@
           </div>
         </div>
       </div>
-      <div class="col" >
-        <div class="card h-100">
+      <div class="col-6 mx-auto" >
+        <div class="card border-primary mb-3 h-100 justify-content-center">
           <img :src= "`https://openweathermap.org/img/w/${this.citys[2].icon}.png`"  class="card-img-top" :alt="citys[2].name">
           <div  class="card-body">
             <h5  class="card-title"> {{citys[2].name}}</h5>
@@ -153,3 +153,6 @@ export default {
 
 }
 </script>
+<style>
+
+</style>
