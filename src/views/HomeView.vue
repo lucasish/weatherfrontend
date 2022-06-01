@@ -9,20 +9,20 @@
             <div id="title" class="card-body">
               <h5 id="temp" class="card-title"> {{citys[1].name}}</h5>
               <p id="location" class="card-text">
-               In {{ citys[1].name }} sind Temperatur: {{citys[1].temp}} Grad Celsius.
+               Temperatur: {{citys[1].temp}} Grad Celsius. <br>
                 Wetter : {{citys[1].weather}}
               </p>
             </div>
           </div>
         </div>
-      <div class="col" >
-        <div class="card h-100">
+      <div class="col"  >
+        <div class="card h-100" >
           <img :src= "`https://openweathermap.org/img/w/${this.citys[0].icon}.png`"  class="card-img-top" :alt="citys[0].name">
           <div  class="card-body">
             <h5  class="card-title"> {{citys[0].name}}</h5>
             <p  class="card-text">
-              In {{ citys[0].name }} sind Temperatur: {{citys[0].temp}} Grad Celsius.
-              Wetter : {{citys[0].weather}}
+               Temperatur: {{citys[0].temp}} Grad Celsius.<br>
+               Wetter : {{citys[0].weather}}
             </p>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div  class="card-body">
             <h5  class="card-title"> {{citys[2].name}}</h5>
             <p  class="card-text">
-              In {{ citys[2].name }} sind Temperatur: {{citys[2].temp}} Grad Celsius.
+              Temperatur: {{citys[2].temp}} Grad Celsius. <br>
               Wetter : {{citys[2].weather}}
             </p>
           </div>
