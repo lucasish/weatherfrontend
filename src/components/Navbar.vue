@@ -4,7 +4,8 @@
       <a class="navbar-brand" href="#">Wetter</a>
       <form class="d-flex">
         <input class="form-control me-2" id="myInput" onkeyup="myFunction()" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <button class="btn btn-light" type="submit">Search</button> &nbsp;
+        <button class="btn btn-info" rounded="true" type="submit">Save</button>
       </form>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
