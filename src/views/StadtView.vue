@@ -1,5 +1,5 @@
 <template>
-  <h1>Cities</h1>
+  <h1>Wetter -- gespeichert </h1>
   <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
