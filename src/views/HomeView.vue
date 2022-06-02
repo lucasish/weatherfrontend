@@ -4,8 +4,8 @@
   <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col-6 mx-auto" >
-        <div class="card border-primary mb-3 h-100 justify-content-center">
-            <img :src= "`https://openweathermap.org/img/w/${this.citys[1].icon}.png`"  class="card-img-top" :alt="citys[1].name">
+        <div class="card border-primary mb-3 w-50 wh-100 justify-content-center">
+            <img :src= "`https://openweathermap.org/img/wn/${this.citys[1].icon}@4x.png`"  class="card-img-top" :alt="citys[1].name">
             <div id="title" class="card-body">
               <h5 id="temp" class="card-title"> {{citys[1].name}}</h5>
               <p id="location" class="card-text">
@@ -16,8 +16,8 @@
           </div>
         </div>
       <div class="col-6 mx-auto"  >
-        <div class="card border-primary mb-3 h-100 justify-content-center" >
-          <img :src= "`https://openweathermap.org/img/w/${this.citys[0].icon}.png`"  class="card-img-top" :alt="citys[0].name">
+        <div class="card border-primary mb-3 w-50 h-100 justify-content-center" >
+          <img :src= "`https://openweathermap.org/img/wn/${this.citys[0].icon}@4x.png`"  class="card-img-top" :alt="citys[0].name">
           <div  class="card-body">
             <h5  class="card-title"> {{citys[0].name}}</h5>
             <p  class="card-text">
@@ -28,8 +28,8 @@
         </div>
       </div>
       <div class="col-6 mx-auto" >
-        <div class="card border-primary mb-3 h-100 justify-content-center">
-          <img :src= "`https://openweathermap.org/img/w/${this.citys[2].icon}.png`"  class="card-img-top" :alt="citys[2].name">
+        <div class="card border-primary mb-3 w-50 h-100 justify-content-center">
+          <img :src= "`https://openweathermap.org/img/wn/${this.citys[2].icon}@4x.png`"  class="card-img-top" :alt="citys[2].name">
           <div  class="card-body">
             <h5  class="card-title"> {{citys[2].name}}</h5>
             <p  class="card-text">
