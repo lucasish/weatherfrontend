@@ -9,8 +9,9 @@
             <div id="title" class="card-body">
               <h3 id="temp" class="card-title"> {{citys[1].name}}</h3>
               <p id="location" class="card-text">
-                <b> Temperatur:</b> {{citys[1].temp}}° Celsius. <br>
+                <b> Temperatur:</b> <br>🌡️ {{citys[1].temp}}° Celsius <br>
                 <b> Wetterkondition:</b> <br> {{citys[1].weather}}
+                <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[1].windspeed}} m/s
               </p>
             </div>
           </div>
@@ -21,8 +22,9 @@
           <div  class="card-body">
             <h3  class="card-title"> {{citys[0].name}}</h3>
             <p  class="card-text">
-              <b> Temperatur:</b> {{citys[0].temp}}° Celsius.<br>
+              <b> Temperatur:</b> <br>🌡️ {{citys[0].temp}}° Celsius<br>
               <b> Wetterkondition:</b> <br> {{citys[0].weather}}
+              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[0].windspeed}} m/s
             </p>
           </div>
         </div>
@@ -33,8 +35,9 @@
           <div  class="card-body">
             <h3  class="card-title"> {{citys[2].name}}</h3>
             <p  class="card-text">
-              <b> Temperatur:</b> {{citys[2].temp}}° Celsius. <br>
+              <b> Temperatur:</b> <br>🌡️ {{citys[2].temp}}° Celsius <br>
               <b> Wetterkondition:</b> <br>{{citys[2].weather}}
+              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[2].windspeed}} m/s
             </p>
           </div>
         </div>
@@ -54,21 +57,24 @@ export default {
         name: 'Berlin',
         temp: ' ',
         weather: ' ',
-        icon: ' '
+        icon: ' ',
+        windspeed: ''
       },
         {
           id: 2,
           name: 'Miami',
           temp: ' ',
           weather: ' ',
-          icon: ' '
+          icon: ' ',
+          windspeed: ''
         },
         {
           id: 3,
           name: 'Paris',
           temp: ' ',
           weather: ' ',
-          icon: ' '
+          icon: ' ',
+          windspeed: ''
         }]
     }
   },
@@ -103,6 +109,7 @@ export default {
         this.citys[1].temp = obj.main.temp
         this.citys[1].weather = obj.weather[0].description
         this.citys[1].icon = obj.weather[0].icon
+        this.citys[1].windspeed = obj.wind.speed
         console.log(obj.weather[0].icon)
         console.log(this.citys[1].icon)
       })
@@ -124,6 +131,7 @@ export default {
         this.citys[0].temp = obj2.main.temp
         this.citys[0].weather = obj2.weather[0].description
         this.citys[0].icon = obj2.weather[0].icon
+        this.citys[0].windspeed = obj2.wind.speed
         console.log(obj2.weather[0].icon)
         console.log(this.citys[0].icon)
       })
@@ -145,6 +153,7 @@ export default {
         this.citys[2].temp = obj3.main.temp
         this.citys[2].weather = obj3.weather[0].description
         this.citys[2].icon = obj3.weather[0].icon
+        this.citys[2].windspeed = obj3.wind.speed
         console.log(obj3.weather[0].icon)
         console.log(this.citys[2].icon)
       })
