@@ -26,12 +26,17 @@ export default {
     }
   },
   methods: {
-    getPicture (city) {
-      if (city.name === 'Berlin') {
-        return require('../assets/logo.png')
-      } else if (city.name !== 'Berlin') {
-        return require('../assets/cloudy.png')
+    addCity (cityLocation) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + cityLocation
+      const requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
       }
+
+      fetch(endpoint, requestOptions)
+        .then(response => response.json())
+        .then(city => this.citys.push(city))
+        .catch(error => console.log('error', error))
     }
   },
   mounted () { // code wird immer beim neuladen der seite ausgeführt:
