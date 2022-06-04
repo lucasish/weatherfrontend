@@ -1,5 +1,41 @@
 <template>
   <h1>Home</h1>
+  <br>
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
+
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Wetterabfrage</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Hier kannst du eine neue Stadt zur Wetterabfrage hinzufügen und ggf. speichern.</p>
+      <form class="row g-3 needs-validation" novalidate>
+        <div class="col-md-12">
+          <label for="validationCustom03" class="form-label">Bitte Stadt eingeben:</label>
+          <input type="text" class="form-control" id="validationCustom03" required>
+          <div class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Stadt speichern?
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit"> {{message}} Stadt hinzufügen</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
   <div class=".bg-info.bg-gradient bg-opacity-25"></div>
   <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
