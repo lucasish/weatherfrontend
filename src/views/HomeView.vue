@@ -4,40 +4,57 @@
   <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col-6 mx-auto" >
-        <div class="card border-primary mb-3 w-50 h-100 justify-content-center">
-            <img :src= "`https://openweathermap.org/img/wn/${this.citys[1].icon}@4x.png`"  class="card-img-top" :alt="citys[1].name">
+        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
+            <img :src= "`https://openweathermap.org/img/wn/${this.citys[0].icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[0].name">
             <div id="title" class="card-body">
-              <h3 id="temp" class="card-title"> {{citys[1].name}}</h3>
+              <h3 id="temp" class="card-title"> {{citys[0].name}}</h3>
               <p id="location" class="card-text">
-                <b> Temperatur:</b> <br>🌡️ {{citys[1].temp}}° Celsius <br>
-                <b> Wetterkondition:</b> <br> {{citys[1].weather}}
-                <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[1].windspeed}} m/s
+                <b> Temperatur:</b> <br>🌡️ {{citys[0].temp}}° Celsius <br>
+                <b> Wetterkondition:</b> <br> {{citys[0].weather}}<br>
+                <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[0].windspeed}} m/s <br>
+                <b> Beschreibung:</b> <br> {{getTemp(citys[0])}} {{citys[0].name}}
               </p>
             </div>
           </div>
         </div>
       <div class="col-6 mx-auto"  >
-        <div class="card border-primary mb-3 w-50 h-100 justify-content-center" >
-          <img :src= "`https://openweathermap.org/img/wn/${this.citys[0].icon}@4x.png`"  class="card-img-top" :alt="citys[0].name">
+        <div class="card border-primary mb-3 w-75 h-auto justify-content-center" >
+          <img :src= "`https://openweathermap.org/img/wn/${this.citys[1].icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[1].name">
           <div  class="card-body">
-            <h3  class="card-title"> {{citys[0].name}}</h3>
+            <h3  class="card-title"> {{citys[1].name}}</h3>
             <p  class="card-text">
-              <b> Temperatur:</b> <br>🌡️ {{citys[0].temp}}° Celsius<br>
-              <b> Wetterkondition:</b> <br> {{citys[0].weather}}
-              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[0].windspeed}} m/s
+              <b> Temperatur:</b> <br>🌡️ {{citys[1].temp}}° Celsius<br>
+              <b> Wetterkondition:</b> <br> {{citys[1].weather}}<br>
+              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[1].windspeed}} m/s <br>
+              <b> Beschreibung:</b> <br> {{getTemp(citys[1])}} {{citys[1].name}}
             </p>
           </div>
         </div>
       </div>
       <div class="col-6 mx-auto" >
-        <div class="card border-primary mb-3 w-50 h-100 justify-content-center">
-          <img :src= "`https://openweathermap.org/img/wn/${this.citys[2].icon}@4x.png`"  class="card-img-top" :alt="citys[2].name">
+        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
+          <img :src= "`https://openweathermap.org/img/wn/${this.citys[2].icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[2].name">
           <div  class="card-body">
             <h3  class="card-title"> {{citys[2].name}}</h3>
             <p  class="card-text">
               <b> Temperatur:</b> <br>🌡️ {{citys[2].temp}}° Celsius <br>
-              <b> Wetterkondition:</b> <br>{{citys[2].weather}}
-              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[2].windspeed}} m/s
+              <b> Wetterkondition:</b> <br>{{citys[2].weather}}<br>
+              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[2].windspeed}} m/s <br>
+              <b> Beschreibung:</b> <br> {{getTemp(citys[2])}} {{citys[2].name}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 mx-auto" >
+        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
+          <img :src= "`https://openweathermap.org/img/wn/${this.citys[3].icon}@4x.png`" style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[3].name">
+          <div  class="card-body">
+            <h3  class="card-title"> {{citys[3].name}}</h3>
+            <p  class="card-text">
+              <b> Temperatur:</b> <br>🌡️ {{citys[3].temp}}° Celsius <br>
+              <b> Wetterkondition:</b> <br>{{citys[3].weather}}<br>
+              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[3].windspeed}} m/s <br>
+              <b> Beschreibung:</b> <br> {{getTemp(citys[3])}} {{citys[3].name}}
             </p>
           </div>
         </div>
@@ -70,7 +87,15 @@ export default {
         },
         {
           id: 3,
-          name: 'Paris',
+          name: 'Istanbul',
+          temp: ' ',
+          weather: ' ',
+          icon: ' ',
+          windspeed: ''
+        },
+        {
+          id: 4,
+          name: 'Moskau',
           temp: ' ',
           weather: ' ',
           icon: ' ',
@@ -85,6 +110,13 @@ export default {
       } else if (city.name !== 'Berlin') {
         return require('../assets/cloudy.png')
       }
+    },
+    getTemp (city) {
+      if (city.temp <= 22) {
+        return ('Brrr, heute ist es eher kühl in ')
+      } else if (city.temp > 22) {
+        return ('Yay, heute ist es recht warm in ')
+      }
     }
   },
   mounted () {
@@ -94,7 +126,7 @@ export default {
     }
 
     let obj
-    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[1].name}&units=metric&lang=de`, requestOptions)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[0].name}&units=metric&lang=de`, requestOptions)
       .then(res => {
         if (res.ok) {
           return res.json()
@@ -105,18 +137,18 @@ export default {
       .then(data => {
         obj = data
         console.log(obj.main.temp)
-        console.log(this.citys[1].name)
-        this.citys[1].temp = obj.main.temp
-        this.citys[1].weather = obj.weather[0].description
-        this.citys[1].icon = obj.weather[0].icon
-        this.citys[1].windspeed = obj.wind.speed
+        console.log(this.citys[0].name)
+        this.citys[0].temp = obj.main.temp
+        this.citys[0].weather = obj.weather[0].description
+        this.citys[0].icon = obj.weather[0].icon
+        this.citys[0].windspeed = obj.wind.speed
         console.log(obj.weather[0].icon)
-        console.log(this.citys[1].icon)
+        console.log(this.citys[0].icon)
       })
       .catch(error => console.log('error', error))
 
     let obj2
-    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[0].name}&units=metric&lang=de`, requestOptions)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[1].name}&units=metric&lang=de`, requestOptions)
       .then(res => {
         if (res.ok) {
           return res.json()
@@ -127,13 +159,13 @@ export default {
       .then(data => {
         obj2 = data
         console.log(obj2.main.temp)
-        console.log(this.citys[0].name)
-        this.citys[0].temp = obj2.main.temp
-        this.citys[0].weather = obj2.weather[0].description
-        this.citys[0].icon = obj2.weather[0].icon
-        this.citys[0].windspeed = obj2.wind.speed
-        console.log(obj2.weather[0].icon)
-        console.log(this.citys[0].icon)
+        console.log(this.citys[1].name)
+        this.citys[1].temp = obj2.main.temp
+        this.citys[1].weather = obj2.weather[0].description
+        this.citys[1].icon = obj2.weather[0].icon
+        this.citys[1].windspeed = obj2.wind.speed
+        console.log(obj2.weather[1].icon)
+        console.log(this.citys[1].icon)
       })
       .catch(error => console.log('error', error))
 
@@ -154,8 +186,30 @@ export default {
         this.citys[2].weather = obj3.weather[0].description
         this.citys[2].icon = obj3.weather[0].icon
         this.citys[2].windspeed = obj3.wind.speed
-        console.log(obj3.weather[0].icon)
+        console.log(obj3.weather[2].icon)
         console.log(this.citys[2].icon)
+      })
+      .catch(error => console.log('error', error))
+
+    let obj4
+    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[3].name}&units=metric&lang=de`, requestOptions)
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw new Error('Error')
+        }
+      })
+      .then(data => {
+        obj4 = data
+        console.log(obj4.main.temp)
+        console.log(this.citys[3].name)
+        this.citys[3].temp = obj4.main.temp
+        this.citys[3].weather = obj4.weather[0].description
+        this.citys[3].icon = obj4.weather[0].icon
+        this.citys[3].windspeed = obj4.wind.speed
+        console.log(obj4.weather[3].icon)
+        console.log(this.citys[3].icon)
       })
       .catch(error => console.log('error', error))
 }
