@@ -4,11 +4,11 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
         <div class="card h-100">
-          <img :src="getPicture(city)" class="card-img-top" :alt="city.name">
+          <img :src= "`https://openweathermap.org/img/wn/${city.icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="city.name">
           <div class="card-body">
             <h5 class="card-title">{{ city.name }}</h5>
             <p class="card-text">
-              In {{ city.name }} ist es so warm: {{city.temp}} {{ city.unit }}
+              In {{ city.name }} ist es so warm {{city.temp}}
             </p>
           </div>
         </div>
@@ -39,7 +39,7 @@ export default {
         .catch(error => console.log('error', error))
     }
   },
-  mounted () { // code wird immer beim neuladen der seite ausgeführt:
+  mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
     console.log('Hello World!')
     const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
     const requestOptions = {
@@ -51,7 +51,23 @@ export default {
       .then(result => result.forEach(city => {
         this.citys.push(city)
       }))
-      .catch(error => console.log('error', error))
+      .then(citys => {
+        return this.citys.forEach(city => {
+          (fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${city.name}&units=metric&lang=de`, requestOptions)
+            .then(async response => await response.json())
+            .then(result => {
+              // obj = result
+              console.log('jetzt kommt temp, id, city name usw')
+              console.log(result.main.temp)
+              console.log(city.name)
+              city.temp = result.main.temp
+              city.weather = result.weather[0].description
+              city.icon = result.weather[0].icon
+              city.windspeed = result.wind.speed
+            })
+            .catch(error => console.log('error', error)))
+        })
+      })
   }
 }
 </script>
