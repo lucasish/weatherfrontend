@@ -155,101 +155,34 @@ export default {
       }
     }
   },
-  mounted () {
+  async mounted () {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
     }
-
-    let obj
-    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[0].name}&units=metric&lang=de`, requestOptions)
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error('Error')
-        }
-      })
-      .then(data => {
-        obj = data
-        console.log(obj.main.temp)
-        console.log(this.citys[0].name)
-        this.citys[0].temp = obj.main.temp
-        this.citys[0].weather = obj.weather[0].description
-        this.citys[0].icon = obj.weather[0].icon
-        this.citys[0].windspeed = obj.wind.speed
-        console.log(obj.weather[0].icon)
-        console.log(this.citys[0].icon)
-      })
-      .catch(error => console.log('error', error))
-
-    let obj2
-    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[1].name}&units=metric&lang=de`, requestOptions)
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error('Error')
-        }
-      })
-      .then(data => {
-        obj2 = data
-        console.log(obj2.main.temp)
-        console.log(this.citys[1].name)
-        this.citys[1].temp = obj2.main.temp
-        this.citys[1].weather = obj2.weather[0].description
-        this.citys[1].icon = obj2.weather[0].icon
-        this.citys[1].windspeed = obj2.wind.speed
-        console.log(obj2.weather[1].icon)
-        console.log(this.citys[1].icon)
-      })
-      .catch(error => console.log('error', error))
-
-    let obj3
-    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[2].name}&units=metric&lang=de`, requestOptions)
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error('Error')
-        }
-      })
-      .then(data => {
-        obj3 = data
-        console.log(obj3.main.temp)
-        console.log(this.citys[2].name)
-        this.citys[2].temp = obj3.main.temp
-        this.citys[2].weather = obj3.weather[0].description
-        this.citys[2].icon = obj3.weather[0].icon
-        this.citys[2].windspeed = obj3.wind.speed
-        console.log(obj3.weather[2].icon)
-        console.log(this.citys[2].icon)
-      })
-      .catch(error => console.log('error', error))
-
-    let obj4
-    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[3].name}&units=metric&lang=de`, requestOptions)
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error('Error')
-        }
-      })
-      .then(data => {
-        obj4 = data
-        console.log(obj4.main.temp)
-        console.log(this.citys[3].name)
-        this.citys[3].temp = obj4.main.temp
-        this.citys[3].weather = obj4.weather[0].description
-        this.citys[3].icon = obj4.weather[0].icon
-        this.citys[3].windspeed = obj4.wind.speed
-        console.log(obj4.weather[3].icon)
-        console.log(this.citys[3].icon)
-      })
-      .catch(error => console.log('error', error))
-}
-
+    // let obj
+    let i = 0
+    for (i; i < 4; i++) {
+      console.log('For schleife start: ID+Name')
+      console.log(i)
+      console.log(this.citys[i].name)
+      await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[i].name}&units=metric&lang=de`, requestOptions)
+        .then(async response => await response.json())
+        .then(result => {
+          // obj = result
+          console.log('jetzt kommt temp, id, city name usw')
+          console.log(result.main.temp)
+          console.log(i)
+          console.log(this.citys[i].name)
+          this.citys[i].temp = result.main.temp
+          this.citys[i].weather = result.weather[0].description
+          this.citys[i].icon = result.weather[0].icon
+        })
+        .catch(error => console.log('error', error))
+      console.log('For schleife durchgang fertig')
+    }
+    console.log('For schleife ende')
+  }
 }
 </script>
 <style>
