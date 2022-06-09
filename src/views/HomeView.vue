@@ -177,6 +177,7 @@ export default {
           this.citys[i].temp = result.main.temp
           this.citys[i].weather = result.weather[0].description
           this.citys[i].icon = result.weather[0].icon
+          this.citys[i].windspeed = result.wind.speed
         })
         .catch(error => console.log('error', error))
       console.log('For schleife durchgang fertig')
