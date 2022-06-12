@@ -37,10 +37,11 @@
   <br>
   <br>
 
+
     <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
-        <div class="card h-100">
+        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
           <img :src= "`https://openweathermap.org/img/wn/${city.icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="city.name">
           <div class="card-body">
             <h5 class="card-title">{{ city.name }}</h5>
