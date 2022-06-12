@@ -10,7 +10,7 @@
         <div class="card-body">
           <h5 class="card-title">Milena Kalo</h5>
           <p class="card-text">
-            Milena mag kein Frontend und würde lieber in der Sonne liegen
+            Milena mag kein Frontend und würde lieber in der Sonne liegen≠
           </p>
         </div>
       </div>

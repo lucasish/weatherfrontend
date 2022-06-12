@@ -22,10 +22,15 @@
           <p>Wir zeigen dir nun wie du am besten unsere Website bedienen kannst.</p>
         </div>
       </div>
+      <br>
+      <br>
+      <br>
+      <br>
       <div class="carousel-item" data-bs-interval="2000">
         <center>
         <img src="../assets/menue.png " id="bild" style="max-height: 150px; max-width: 150px;"  class="d-block w-100"  alt="...">
           </center>
+        <br>
         <br>
         <br>
         <br>
