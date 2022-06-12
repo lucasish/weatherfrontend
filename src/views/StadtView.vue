@@ -28,7 +28,7 @@
           </ul>
         </div>
         <div class="col-12">
-          <button class="btn btn-primary" type="submit" @click.prevent="createCity">Stadt hinzufügen</button>
+          <button id="button2" class="btn btn-primary" type="submit" @click.prevent="createCity">Stadt hinzufügen</button>
         </div>
       </form>
     </div>
@@ -156,4 +156,5 @@ export default {
 
 <style scoped>
 #button {border-radius: 50px;}
+#button2 {border-radius: 50px;}
 </style>
