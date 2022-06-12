@@ -3,7 +3,7 @@
   <h1> Wetter </h1>
   <br>
 
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
+  <button class="btn btn-primary" id="button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
@@ -33,6 +33,8 @@
       </form>
     </div>
   </div>
+
+
   <br>
   <br>
   <br>
@@ -56,6 +58,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -152,5 +155,5 @@ export default {
 </script>
 
 <style scoped>
-
+#button {border-radius: 50px;}
 </style>
