@@ -1,5 +1,42 @@
 <template>
-  <h1> Favoritenliste </h1>
+  <br>
+  <h1> Wetter </h1>
+  <br>
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
+
+  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Wetterabfrage</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Hier kannst du eine neue Stadt zur Wetterabfrage hinzufügen und speichern.</p>
+      <form class="row g-3 needs-validation" id="city-create-form"  novalidate>
+        <div class="col-md-12">
+          <label for="validationCustom03" class="form-label">Bitte Stadt eingeben:</label>
+          <input type="text" class="form-control" id="validationCustom03"  v-model="name" required>
+          <div class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+        </div>
+        <div v-if="this.serverValidationMessages">
+          <ul>
+            <li v-for="(message, index) in serverValidationMessages" :key="index" style="color: red">
+              {{ message }}
+            </li>
+          </ul>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit" @click.prevent="createCity">Stadt hinzufügen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+
     <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
@@ -25,22 +62,13 @@ export default {
   name: 'StadtView',
   data () {
     return {
+      name: "",
+      serverValidationMessages: [],
       citys: []
     }
   },
+  emits: ['created'],
   methods: {
-    addCity (cityLocation) {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + cityLocation
-      const requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-      }
-
-      fetch(endpoint, requestOptions)
-        .then(response => response.json())
-        .then(city => this.citys.push(city))
-        .catch(error => console.log('error', error))
-    },
     getTemp (city) {
       if (city.temp <= 22) {
         return ('Brrr, heute ist es eher kühl in ')
@@ -48,6 +76,46 @@ export default {
         return ('Yay, heute ist es recht warm in ')
       }
     }
+  },
+  async createCity () {
+    if (this.validate()) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
+
+      const headers = new Headers()
+      headers.append('Content-Type', 'application/json')
+
+      const city = JSON.stringify({
+        name: this.name
+      })
+
+      const requestOptions = {
+        method: 'POST',
+        headers: headers,
+        body: city,
+        redirect: 'follow'
+      }
+
+      const response = await fetch(endpoint, requestOptions)
+      await this.handleResponse(response)
+    }
+  },
+  async handleResponse (response) {
+    if (response.ok) {
+      this.$emit('created', response.headers.get('location'))
+      document.getElementById('close-offcanvas').click()
+    } else if (response.status === 400) {
+      response = await response.json()
+      response.errors.forEach(error => {
+        this.serverValidationMessages.push(error.defaultMessage)
+      })
+    } else {
+      this.serverValidationMessages.push('Unknown error occurred')
+    }
+  },
+  validate () {
+    const form = document.getElementById('city-create-form')
+    form.classList.add('was-validated')
+    return form.checkValidity()
   },
   mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
     console.log('Hello World!')

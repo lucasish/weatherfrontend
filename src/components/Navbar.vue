@@ -11,8 +11,8 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
          <router-link class="nav-link" to="/home">Home</router-link>
-          <router-link class="nav-link" to="/about">About</router-link>
-          <router-link classs="nav-link" to="/stadt1">Cities</router-link>
+          <router-link class="nav-link" to="/about">Über uns</router-link>
+          <router-link classs="nav-link" to="/stadt1">Wetter</router-link>
         </ul>
       </div>
     </div>

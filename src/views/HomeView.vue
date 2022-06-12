@@ -1,182 +1,73 @@
 <template>
+  <br>
   <h1>Home</h1>
   <br>
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
-
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Wetterabfrage</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-    <div class="offcanvas-body">
-      <p>Hier kannst du eine neue Stadt zur Wetterabfrage hinzufügen und ggf. speichern.</p>
-      <form class="row g-3 needs-validation" novalidate>
-        <div class="col-md-12">
-          <label for="validationCustom03" class="form-label">Bitte Stadt eingeben:</label>
-          <input type="text" class="form-control" id="validationCustom03" required>
-          <div class="invalid-feedback">
-            Please provide a valid city.
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-            <label class="form-check-label" for="invalidCheck">
-              Stadt speichern?
-            </label>
-          </div>
-        </div>
-        <div class="col-12">
-          <button class="btn btn-primary" type="submit"> {{message}} Stadt hinzufügen</button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-  <br>
-  <br>
-  <br>
-  <div class=".bg-info.bg-gradient bg-opacity-25"></div>
-  <div class="container-fluid">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col-6 mx-auto" >
-        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
-            <img :src= "`https://openweathermap.org/img/wn/${this.citys[0].icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[0].name">
-            <div id="title" class="card-body">
-              <h3 id="temp" class="card-title"> {{citys[0].name}}</h3>
-              <p id="location" class="card-text">
-                <b> Temperatur:</b> <br>🌡️ {{citys[0].temp}}° Celsius <br>
-                <b> Wetterkondition:</b> <br> {{citys[0].weather}}<br>
-                <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[0].windspeed}} m/s <br>
-                <b> Beschreibung:</b> <br> {{getTemp(citys[0])}} {{citys[0].name}}
-              </p>
-            </div>
-          </div>
-        </div>
-      <div class="col-6 mx-auto"  >
-        <div class="card border-primary mb-3 w-75 h-auto justify-content-center" >
-          <img :src= "`https://openweathermap.org/img/wn/${this.citys[1].icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[1].name">
-          <div  class="card-body">
-            <h3  class="card-title"> {{citys[1].name}}</h3>
-            <p  class="card-text">
-              <b> Temperatur:</b> <br>🌡️ {{citys[1].temp}}° Celsius<br>
-              <b> Wetterkondition:</b> <br> {{citys[1].weather}}<br>
-              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[1].windspeed}} m/s <br>
-              <b> Beschreibung:</b> <br> {{getTemp(citys[1])}} {{citys[1].name}}
-            </p>
-          </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <center>
+        <img src="../assets/cloudy.png " style="max-height: 300px; max-width: 300px;" class="d-block w-100"  alt="...">
+        </center>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Herzlich Willkommen zu unserer WetterApp</h5>
+          <p>Wir zeigen dir nun wie du am besten unsere Website bedienen kannst.</p>
         </div>
       </div>
-      <div class="col-6 mx-auto" >
-        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
-          <img :src= "`https://openweathermap.org/img/wn/${this.citys[2].icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[2].name">
-          <div  class="card-body">
-            <h3  class="card-title"> {{citys[2].name}}</h3>
-            <p  class="card-text">
-              <b> Temperatur:</b> <br>🌡️ {{citys[2].temp}}° Celsius <br>
-              <b> Wetterkondition:</b> <br>{{citys[2].weather}}<br>
-              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[2].windspeed}} m/s <br>
-              <b> Beschreibung:</b> <br> {{getTemp(citys[2])}} {{citys[2].name}}
-            </p>
-          </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <center>
+        <img src="../assets/menue.png " id="bild" style="max-height: 150px; max-width: 150px;"  class="d-block w-100"  alt="...">
+          </center>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Navigationsbar</h5>
+          <p>Diese findest du rechts oben.
+            <br>Hier kannst du zwischen den verschiedenen Seiten wechseln.</p>
         </div>
       </div>
-      <div class="col-6 mx-auto" >
-        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
-          <img :src= "`https://openweathermap.org/img/wn/${this.citys[3].icon}@4x.png`" style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="citys[3].name">
-          <div  class="card-body">
-            <h3  class="card-title"> {{citys[3].name}}</h3>
-            <p  class="card-text">
-              <b> Temperatur:</b> <br>🌡️ {{citys[3].temp}}° Celsius <br>
-              <b> Wetterkondition:</b> <br>{{citys[3].weather}}<br>
-              <b> Windgeschwindigkeit:</b> <br> 💨 {{citys[3].windspeed}} m/s <br>
-              <b> Beschreibung:</b> <br> {{getTemp(citys[3])}} {{citys[3].name}}
-            </p>
-          </div>
+      <div  class="carousel-item">
+        <center>
+          <img src="../assets/daumen.png " style="max-height: 300px; max-width: 300px;" class="d-block w-100"  alt="...">
+        </center>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Einführung beendet</h5>
+          <p>Wir wünschen dir viel Spaß mit unserer Website.</p>
         </div>
       </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'StadtView',
-  data: function () {
-    return {
-      citys: [{
-        id: 1,
-        name: 'Berlin',
-        temp: ' ',
-        weather: ' ',
-        icon: ' ',
-        windspeed: ''
-      },
-        {
-          id: 2,
-          name: 'Miami',
-          temp: ' ',
-          weather: ' ',
-          icon: ' ',
-          windspeed: ''
-        },
-        {
-          id: 3,
-          name: 'Istanbul',
-          temp: ' ',
-          weather: ' ',
-          icon: ' ',
-          windspeed: ''
-        },
-        {
-          id: 4,
-          name: 'Moskau',
-          temp: ' ',
-          weather: ' ',
-          icon: ' ',
-          windspeed: ''
-        }]
-    }
-  },
-  methods: {
-    getTemp (city) {
-      if (city.temp <= 22) {
-        return ('Brrr, heute ist es eher kühl in ')
-      } else if (city.temp > 22) {
-        return ('Yay, heute ist es recht warm in ')
-      }
-    }
-  },
-  async mounted () {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
-    }
-    // let obj
-    let i = 0
-    for (i; i < 4; i++) {
-      console.log('For schleife start: ID+Name')
-      console.log(i)
-      console.log(this.citys[i].name)
-      await fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${this.citys[i].name}&units=metric&lang=de`, requestOptions)
-        .then(async response => await response.json())
-        .then(result => {
-          // obj = result
-          console.log('jetzt kommt temp, id, city name usw')
-          console.log(result.main.temp)
-          console.log(i)
-          console.log(this.citys[i].name)
-          this.citys[i].temp = result.main.temp
-          this.citys[i].weather = result.weather[0].description
-          this.citys[i].icon = result.weather[0].icon
-          this.citys[i].windspeed = result.wind.speed
-        })
-        .catch(error => console.log('error', error))
-      console.log('For schleife durchgang fertig')
-    }
-    console.log('For schleife ende')
-  }
+
 }
 </script>
 <style>
