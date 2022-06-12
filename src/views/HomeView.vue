@@ -140,13 +140,6 @@ export default {
     }
   },
   methods: {
-    getPicture (city) {
-      if (city.name === 'Berlin') {
-        return require('../assets/logo.png')
-      } else if (city.name !== 'Berlin') {
-        return require('../assets/cloudy.png')
-      }
-    },
     getTemp (city) {
       if (city.temp <= 22) {
         return ('Brrr, heute ist es eher kühl in ')
