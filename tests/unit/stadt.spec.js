@@ -9,7 +9,7 @@ describe('Testing StadtView.vue', () => {
       const wrapper = mount(StadtView)
 
       // then
-      expect(wrapper.text()).toMatch(' Wetter')
+      expect(wrapper.text()).toMatch('Wetter')
     })
 
   it('should not show form by default', () => {
@@ -23,7 +23,7 @@ describe('Testing StadtView.vue', () => {
   it('should render cityname', () => {
     // when
     const wrapper = mount(StadtView, {
-      propsData: {
+      data: {
         city: {
           id: 1,
           name: 'Potsdam'
