@@ -53,8 +53,10 @@
         <br>
         <br>
         <div class="carousel-caption d-none d-md-block">
+          <br>
           <h5>Einführung beendet</h5>
           <p>Wir wünschen dir viel Spaß mit unserer Website.</p>
+          <router-link to="/stadt1">Los geht's!</router-link>
         </div>
       </div>
     </div>
