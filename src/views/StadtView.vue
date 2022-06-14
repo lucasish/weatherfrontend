@@ -43,7 +43,7 @@
     <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
-        <div class="card border-primary mb-3 w-75 h-auto justify-content-center">
+        <div id="karte" class="card border-primary mb-3 w-75 h-auto justify-content-center">
           <img :src= "`https://openweathermap.org/img/wn/${city.icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="city.name">
           <div class="card-body">
             <h5 class="card-title">{{ city.name }}</h5>
@@ -73,6 +73,7 @@ export default {
   },
   emits: ['created'],
   methods: {
+
     getTemp (city) {
       if (city.temp <= 22) {
         return ('Brrr, heute ist es eher kühl in ')
@@ -82,6 +83,7 @@ export default {
     }
   },
   async createCity () {
+    console.log(this.name)
     if (this.validate()) {
       const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
 
