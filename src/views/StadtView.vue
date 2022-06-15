@@ -2,7 +2,6 @@
   <br>
   <h1> Wetter </h1>
   <br>
-
   <button class="btn btn-primary" id="button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -28,7 +27,8 @@
           </ul>
         </div>
         <div class="col-12">
-          <button id="button2" class="btn btn-primary" type="submit" @click.prevent="createCity">Stadt hinzufügen</button>
+          <button id="button2" class="btn btn-primary" type="submit" @click="createCity()">Stadt hinzufügen</button>
+<!--          <button v-on:click="createCity()" id="button2" class="btn btn-primary" type="submit">Stadt hinzufügen</button>-->
         </div>
       </form>
     </div>
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'StadtView',
   data () {
@@ -73,37 +74,45 @@ export default {
   },
   emits: ['created'],
   methods: {
-
     getTemp (city) {
       if (city.temp <= 22) {
         return ('Brrr, heute ist es eher kühl in ')
       } else if (city.temp > 22) {
         return ('Yay, heute ist es recht warm in ')
       }
-    }
-  },
+    },
   async createCity () {
-    console.log(this.name)
-    if (this.validate()) {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
-
-      const headers = new Headers()
-      headers.append('Content-Type', 'application/json')
-
-      const city = JSON.stringify({
-        name: this.name
-      })
-
-      const requestOptions = {
-        method: 'POST',
-        headers: headers,
-        body: city,
-        redirect: 'follow'
+    console.log("erkannt",this.name)
+    const jsonvalue = JSON.stringify({name: this.name})
+    return await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity', jsonvalue, {
+    headers: {
+      name: this.name,
+      'Content-Type': 'application/json'
       }
-
-      const response = await fetch(endpoint, requestOptions)
-      await this.handleResponse(response)
-    }
+    })
+    // const resultat = await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity',
+    // console.log("erhalten")
+    // if (this.validate()) {
+    //   const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
+    //
+    //   const headers = new Headers()
+    //   headers.append('Content-Type', 'application/json')
+    //
+    //   const city = JSON.stringify({
+    //     name: this.name
+    //   })
+    //
+    //   const requestOptions = {
+    //     method: 'POST',
+    //     headers: headers,
+    //     body: city,
+    //     redirect: 'follow'
+    //   }
+    //
+    //   const response = await fetch(endpoint, requestOptions)
+    //   await this.handleResponse(response)
+    // }
+  }
   },
   async handleResponse (response) {
     if (response.ok) {
