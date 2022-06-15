@@ -123,12 +123,14 @@ export default {
     console.log("validate vorbei")
   },
   async handleResponse (response) {
-    if (await response.ok) {
+      if (await response.status === 201 || response.status === 200) {
       this.$emit('created', response.headers.get('location'))
       // document.getElementById('close-offcanvas').click()
-    } else if (response.status === 404 || response.status === 400) {
+        console.log("200")
+      } else if (response.status === 404 || response.status === 400) {
       response = await response.json()
-      response.errors.forEach(error => {
+        console.log("400")
+        response.errors.forEach(error => {
         this.serverValidationMessages.push(error.defaultMessage)
       })
     } else {
