@@ -91,16 +91,19 @@ export default {
       }
     })
     // const resultat = await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity',
-    console.log("erhalten")
+    console.log("Eingabe erhalten")
     if (this.validate()) {
+      console.log("validate start")
       const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
 
       const headers = new Headers()
       headers.append('Content-Type', 'application/json')
+      console.log("append ok")
 
       const city = JSON.stringify({
         name: this.name
       })
+      console.log("stringfy ok")
 
       const requestOptions = {
         method: 'POST',
@@ -108,17 +111,22 @@ export default {
         body: city,
         redirect: 'follow'
       }
+      console.log("reqOp ok")
 
       const response = await fetch(endpoint, requestOptions)
+      console.log("await fetch ok")
+
       await this.handleResponse(response)
+      console.log("await handle response ok")
+
     }
-  }
+    console.log("validate vorbei")
   },
   async handleResponse (response) {
-    if (response.ok) {
+    if (await response.ok) {
       this.$emit('created', response.headers.get('location'))
-      document.getElementById('close-offcanvas').click()
-    } else if (response.status === 400) {
+      // document.getElementById('close-offcanvas').click()
+    } else if (response.status === 404 || response.status === 400) {
       response = await response.json()
       response.errors.forEach(error => {
         this.serverValidationMessages.push(error.defaultMessage)
@@ -131,6 +139,7 @@ export default {
     const form = document.getElementById('city-create-form')
     form.classList.add('was-validated')
     return form.checkValidity()
+  }
   },
   mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
     console.log('Hello World!')
