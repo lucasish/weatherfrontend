@@ -27,7 +27,7 @@
           </ul>
         </div>
         <div class="col-12">
-          <button id="button2" class="btn btn-primary" type="submit" @click="createCity()">Stadt hinzufügen</button>
+          <button id="button2" class="btn btn-primary" type="submit" @click.prevent="createCity()">Stadt hinzufügen</button>
 <!--          <button v-on:click="createCity()" id="button2" class="btn btn-primary" type="submit">Stadt hinzufügen</button>-->
         </div>
       </form>
@@ -84,34 +84,34 @@ export default {
   async createCity () {
     console.log("erkannt",this.name)
     const jsonvalue = JSON.stringify({name: this.name})
-    return await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity', jsonvalue, {
+    await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity', jsonvalue, {
     headers: {
       name: this.name,
       'Content-Type': 'application/json'
       }
     })
     // const resultat = await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity',
-    // console.log("erhalten")
-    // if (this.validate()) {
-    //   const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
-    //
-    //   const headers = new Headers()
-    //   headers.append('Content-Type', 'application/json')
-    //
-    //   const city = JSON.stringify({
-    //     name: this.name
-    //   })
-    //
-    //   const requestOptions = {
-    //     method: 'POST',
-    //     headers: headers,
-    //     body: city,
-    //     redirect: 'follow'
-    //   }
-    //
-    //   const response = await fetch(endpoint, requestOptions)
-    //   await this.handleResponse(response)
-    // }
+    console.log("erhalten")
+    if (this.validate()) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
+
+      const headers = new Headers()
+      headers.append('Content-Type', 'application/json')
+
+      const city = JSON.stringify({
+        name: this.name
+      })
+
+      const requestOptions = {
+        method: 'POST',
+        headers: headers,
+        body: city,
+        redirect: 'follow'
+      }
+
+      const response = await fetch(endpoint, requestOptions)
+      await this.handleResponse(response)
+    }
   }
   },
   async handleResponse (response) {
