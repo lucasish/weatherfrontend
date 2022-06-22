@@ -4,7 +4,7 @@
   <br>
   <button class="btn btn-primary" id="button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
   <br>
-  <button id="button3" class="btn btn-primary" type="submit" @click.prevent="deleteCities()">Stadt löschen</button>
+  <button id="button3" class="btn btn-primary" type="submit" @click.prevent="deleteCities()">Alle Städte löschen</button>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
@@ -40,8 +40,8 @@
 
 
   <br>
-  <br>
-  <br>
+<!--  <br>-->
+<!--  <br>-->
 
 
     <div class="container-fluid">
@@ -50,7 +50,7 @@
         <div id="karte" class="card border-primary mb-3 w-75 h-auto justify-content-center">
           <img :src= "`https://openweathermap.org/img/wn/${city.icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="city.name">
           <div class="card-body">
-            <h4 > ID: {{city.id}} </h4>
+<!--            <h4 > ID: {{city.id}} </h4>-->
             <h5 class="card-title">
               {{ city.name }}</h5>
             <p class="card-text">
@@ -136,24 +136,50 @@ export default {
     }
   },
     async deleteCities () {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
 
-      const headers = new Headers()
-      headers.append('Content-Type', 'application/json')
-      console.log("append ok")
-
-      // const city = JSON.stringify({
-      //   name: this.name
-      // })
-      //   console.log("stringfy ok")
-      //
       const requestOptions = {
         method: 'DELETE',
-        headers: headers,
-        // body: city,
         redirect: 'follow'
       }
-      const response = await fetch(endpoint, requestOptions)
+      console.log('moin moin')
+
+      var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+      n.forEach(i=>{
+        const id = i
+        const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity/' + id
+        console.log(endpoint)
+        axios.delete(endpoint, requestOptions)
+          .then(function (response) {
+            console.log(response)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      })
+
+
+
+
+
+
+      // const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
+      //
+      // const headers = new Headers()
+      // headers.append('Content-Type', 'application/json')
+      // console.log("append ok")
+      //
+      // // const city = JSON.stringify({
+      // //   name: this.name
+      // // })
+      // //   console.log("stringfy ok")
+      // //
+      // const requestOptions = {
+      //   method: 'DELETE',
+      //   headers: headers,
+      //   // body: city,
+      //   redirect: 'follow'
+      // }
+      // const response = await fetch(endpoint, requestOptions)
       console.log("await fetch ok")
 
     },
