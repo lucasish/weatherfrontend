@@ -3,7 +3,7 @@
   <h1> Wetter </h1>
   <br>
   <button class="btn btn-primary" id="button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
-  <br>
+
   <button id="button3" class="btn btn-primary" type="submit" @click.prevent="deleteCities()">Stadt löschen</button>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -197,7 +197,8 @@ export default {
 </script>
 
 <style scoped>
-#button {border-radius: 50px;}
+#button {border-radius: 50px; margin: 15px;}
 #button2 {border-radius: 50px;}
 #button6 {border-radius: 50px}
+#button3 {border-radius: 50px}
 </style>
