@@ -28,7 +28,9 @@
         </div>
         <div class="col-12">
           <button id="button2" class="btn btn-primary" type="submit" @click.prevent="createCity()">Stadt hinzufügen</button>
-<!--          <button v-on:click="createCity()" id="button2" class="btn btn-primary" type="submit">Stadt hinzufügen</button>-->
+          <br>
+          <br>
+           <button  id="button6" class="btn btn-primary" type="reset">Reset</button>
         </div>
       </form>
     </div>
@@ -46,7 +48,9 @@
         <div id="karte" class="card border-primary mb-3 w-75 h-auto justify-content-center">
           <img :src= "`https://openweathermap.org/img/wn/${city.icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="city.name">
           <div class="card-body">
-            <h5 class="card-title">{{ city.name }}</h5>
+            <h4 > ID: {{city.id}} </h4>
+            <h5 class="card-title">
+              {{ city.name }}</h5>
             <p class="card-text">
               <b> Temperatur:</b> <br>🌡️ {{city.temp}}° Celsius <br>
               <b> Wetterkondition:</b> <br> {{city.weather}}<br>
@@ -82,15 +86,7 @@ export default {
       }
     },
   async createCity () {
-    console.log("erkannt",this.name)
-    const jsonvalue = JSON.stringify({name: this.name})
-    await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity', jsonvalue, {
-    headers: {
-      name: this.name,
-      'Content-Type': 'application/json'
-      }
-    })
-    // const resultat = await axios.post(process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity',
+
     console.log("Eingabe erhalten")
     if (this.validate()) {
       console.log("validate start")
@@ -179,4 +175,5 @@ export default {
 <style scoped>
 #button {border-radius: 50px;}
 #button2 {border-radius: 50px;}
+#button6 {border-radius: 50px}
 </style>
