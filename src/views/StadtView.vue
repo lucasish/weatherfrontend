@@ -55,7 +55,7 @@
               <b> Temperatur:</b> <br>🌡️ {{city.temp}}° Celsius <br>
               <b> Wetterkondition:</b> <br> {{city.weather}}<br>
               <b> Windgeschwindigkeit:</b> <br> 💨 {{city.windspeed}} m/s <br>
-              <b> Beschreibung:</b> <br> {{getTemp(city)}} {{city.name}}
+              <b> Beschreibung:</b> <br> {{getTemp(city)}} {{city.name}}{{getWindspeed(city)}}
             </p>
           </div>
         </div>
@@ -83,6 +83,13 @@ export default {
         return ('Brrr, heute ist es eher kühl in ')
       } else if (city.temp > 22) {
         return ('Yay, heute ist es recht warm in ')
+      }
+    },
+    getWindspeed (city) {
+      if (city.windspeed <= 5) {
+        return ('. Dafür ist es jedoch nicht so windig.')
+      } else if (city.temp > 5) {
+        return ('. Außerdem ist es sehr stürmisch.')
       }
     },
   async createCity () {
@@ -138,8 +145,7 @@ export default {
         method: 'DELETE',
         redirect: 'follow'
       }
-      console.log('moin moin')
-
+      console.log('Start delete')
       var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
       n.forEach(i=>{
         const id = i
@@ -153,6 +159,7 @@ export default {
             console.log(error)
           })
       })
+      console.log('Delete finished')
     },
   validate () {
     const form = document.getElementById('city-create-form')
