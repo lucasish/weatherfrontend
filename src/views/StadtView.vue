@@ -4,7 +4,7 @@
   <br>
   <button class="btn btn-primary" id="button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
   <br>
-  <button class="btn btn-primary" id="button3" variant="outline-warning" type="submit" @click="deleteCities()">Alle Städte löschen</button>
+  <button id="button3" class="btn btn-primary" type="submit" @click.prevent="deleteCities()">Alle Städte löschen</button>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
@@ -29,7 +29,7 @@
           </ul>
         </div>
         <div class="col-12">
-          <button id="button2" class="btn btn-primary" type="submit" @click="createCity()">Stadt hinzufügen</button>
+          <button id="button2" class="btn btn-primary" type="submit" @click.prevent="createCity()">Stadt hinzufügen</button>
           <br>
           <br>
            <button  id="button6" class="btn btn-primary" type="reset">Reset</button>
@@ -40,8 +40,8 @@
 
 
   <br>
-  <br>
-  <br>
+<!--  <br>-->
+<!--  <br>-->
 
 
     <div class="container-fluid">
@@ -141,7 +141,7 @@ export default {
         method: 'DELETE',
         redirect: 'follow'
       }
-      console.log('Start delete')
+      console.log('moin moin')
 
       var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
       n.forEach(i=>{
@@ -157,7 +157,30 @@ export default {
           })
       })
 
-      console.log("delete complete")
+
+
+
+
+
+      // const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
+      //
+      // const headers = new Headers()
+      // headers.append('Content-Type', 'application/json')
+      // console.log("append ok")
+      //
+      // // const city = JSON.stringify({
+      // //   name: this.name
+      // // })
+      // //   console.log("stringfy ok")
+      // //
+      // const requestOptions = {
+      //   method: 'DELETE',
+      //   headers: headers,
+      //   // body: city,
+      //   redirect: 'follow'
+      // }
+      // const response = await fetch(endpoint, requestOptions)
+      console.log("await fetch ok")
 
     },
   validate () {
