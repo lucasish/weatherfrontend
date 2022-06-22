@@ -10,7 +10,7 @@
         <div class="card-body">
           <h5 class="card-title">Milena Kalo</h5>
           <p class="card-text">
-            Wirtcshaftsnformatik Bachelorstudent 🎓
+            Wirtschaftsnformatik Bachelorstudent 🎓
           </p>
         </div>
       </div>
