@@ -161,7 +161,7 @@ export default {
   }
   },
   mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
-    console.log('Hello World!')
+   // console.log('Hello World!')
     const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
     const requestOptions = {
       method: 'GET',
@@ -178,9 +178,9 @@ export default {
             .then(async response => await response.json())
             .then(result => {
               // obj = result
-              console.log('jetzt kommt temp, id, city name usw')
-              console.log(result.main.temp)
-              console.log(city.name)
+             // console.log('jetzt kommt temp, id, city name usw')
+             // console.log(result.main.temp)
+             // console.log(city.name)
               city.temp = result.main.temp
               city.weather = result.weather[0].description
               city.icon = result.weather[0].icon
