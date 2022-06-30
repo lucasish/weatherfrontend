@@ -17,7 +17,7 @@ Weiterhin erhält er den Text "Dafür ist es jedoch nicht so windig." wenn die W
 Von der Wetterdatenbank erhalten wir eine Id die wir dann in einen Link einbauen und so für jede Stadt das passende Wettericon erhalten. 
 Die App ist nur valide vom Backend her, dass heißt wenn die Stadt mindestens 3 Buchstaben hat und nicht leer ist, wird die Eingabe akzeptiert.
 Eine Validierung, ob die eingegebene Stadt existiert, geschieht nicht. Weiterhin können alle benutzerdefinierten Städte durch einen Button gelöscht werden. 
-Tooltips an den jeweiligen Buttons geben genauere Auskunft.
+Tooltips an den jeweiligen Buttons geben genauere Auskunft. Man kann über die Navbar das Wort "Wetter" wieder zur Home Seite wechseln.
 
 # Port: 
 http://localhost:300/
