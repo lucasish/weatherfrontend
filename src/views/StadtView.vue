@@ -1,11 +1,13 @@
 <template>
-  <component-to-re-render :key="JSON.stringify(citys)" :data="citys">
+<!--  <component-to-re-render :key="JSON.stringify(citys)" :data="citys">-->
 
   <br>
   <h1> Wetter </h1>
   <br>
   <button class="btn btn-primary" id="button" title="neue Stadt hinzufügen" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
+  <div>
   <button id="button3" class="btn btn-primary" title="löscht alle benutzerdefinierten Städte" type="submit" @click="deleteCities()" :key="componentKey">Alle Städte löschen</button>
+  </div>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
@@ -44,7 +46,7 @@
   <br>
 
 
-  <div class="container-fluid">
+  <div class="container-fluid"  v-if='render'>
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
         <div id="karte" class="card border-primary mb-3 w-75 h-auto justify-content-center">
@@ -63,7 +65,7 @@
       </div>
     </div>
   </div>
- </component-to-re-render>
+<!-- </component-to-re-render>-->
 
 </template>
 
@@ -76,7 +78,8 @@ export default {
       name: "",
       serverValidationMessages: [],
       citys: [],
-      componentKey: 0
+      componentKey: 0,
+      render: true
     }
   },
   emits: ['created'],
@@ -147,6 +150,13 @@ export default {
       this.serverValidationMessages.push('Unknown error occurred')
     }
   },
+    async reload () {
+      this.render = false
+      var cities = this.citys
+      this.citys = cities
+      await this.$nextTick()
+      this.render = true
+    },
     async deleteCities () {
 
       const requestOptions = {
@@ -154,21 +164,47 @@ export default {
         redirect: 'follow'
       }
       console.log('Start delete')
-      var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
-      n.forEach(i=>{
+      var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]
+
+      for (const i of n) {
         const id = i
         const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity/' + id
         console.log(endpoint)
-        axios.delete(endpoint, requestOptions)
-          .then(function (response) {
+
+        await axios.delete(endpoint, requestOptions)
+          .then(response => {
             console.log(response)
+            return response
           })
           .catch(function (error) {
-            console.log(error)
+             console.log(error)
           })
-      })
+        }
+
+
       console.log('Delete finished. Reloading...')
       this.componentKey++
+      await this.reload()
+      // await this.methodThatForcesUpdate()
+
+      const endpoint2 = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
+      axios.get(endpoint2)
+        .then(response => {
+          this.data = response.data
+          this.data.forEach((city) => {
+            console.log("found: ", city)
+            console.log("found id: ", city.id)
+            // this.citys.push(city)
+          })
+        })
+
+        // .then(function (response) {
+        //   // Do something
+        //   console.log(response)
+        //
+        //   })
+
+
     },
   validate () {
     const form = document.getElementById('city-create-form')
