@@ -40,12 +40,8 @@
       </form>
     </div>
   </div>
-
-
   <br>
   <br>
-
-
   <div class="container-fluid"  v-if='render'>
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
@@ -127,12 +123,9 @@ export default {
 
       await this.handleResponse(response)
       console.log("await handle response ok. Reloading...")
-      // this.init()
     }
-    // this.methodThatForcesUpdate()
     console.log("validate vorbei")
-    // this.componentKey += 1
-    // const abc = this.citys
+
 
   },
   async handleResponse (response) {
@@ -179,31 +172,9 @@ export default {
              console.log(error)
           })
         }
-
-
       console.log('Delete finished. Reloading...')
-      this.componentKey++
-      await this.reload()
-      // await this.methodThatForcesUpdate()
 
-      const endpoint2 = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
-      axios.get(endpoint2)
-        .then(response => {
-          this.data = response.data
-          this.data.forEach((city) => {
-            console.log("found: ", city)
-            console.log("found id: ", city.id)
-            // this.citys.push(city)
-          })
-        })
-
-        // .then(function (response) {
-        //   // Do something
-        //   console.log(response)
-        //
-        //   })
-
-
+      await this.methodThatForcesUpdate()
     },
   validate () {
     const form = document.getElementById('city-create-form')
@@ -212,11 +183,11 @@ export default {
   },
     methodThatForcesUpdate () {
       this.componentKey += 1
+      window.location.reload()
     }
   },
   mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
-   // console.log('Hello World!')
-   //  this.init()
+
     const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
     const requestOptions = {
       method: 'GET',
@@ -232,10 +203,6 @@ export default {
           (fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${city.name}&units=metric&lang=de`, requestOptions)
             .then(async response => await response.json())
             .then(result => {
-              // obj = result
-             // console.log('jetzt kommt temp, id, city name usw')
-             // console.log(result.main.temp)
-             // console.log(city.name)
               city.temp = result.main.temp
               city.weather = result.weather[0].description
               city.icon = result.weather[0].icon
