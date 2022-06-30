@@ -1,5 +1,5 @@
 <template>
-<!--  <component-to-re-render :key="JSON.stringify(citys)" :data="citys">-->
+  <component-to-re-render :key="JSON.stringify(citys)" :data="citys">
 
   <br>
   <h1> Wetter </h1>
@@ -65,7 +65,7 @@
       </div>
     </div>
   </div>
-<!-- </component-to-re-render>-->
+ </component-to-re-render>
 
 </template>
 
@@ -131,7 +131,6 @@ export default {
     }
     // this.methodThatForcesUpdate()
     console.log("validate vorbei")
-    // this.componentKey += 1
     // this.componentKey += 1
     // const abc = this.citys
 
@@ -214,35 +213,6 @@ export default {
     methodThatForcesUpdate () {
       this.componentKey += 1
     }
-  // init () {
-  //   const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
-  //   const requestOptions = {
-  //     method: 'GET',
-  //     redirect: 'follow'
-  //   }
-  //   fetch(endpoint, requestOptions)
-  //     .then(response => response.json())
-  //     .then(result => result.forEach(city => {
-  //       this.citys.push(city)
-  //     }))
-  //     .then(citys => {
-  //       return this.citys.forEach(city => {
-  //         (fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${city.name}&units=metric&lang=de`, requestOptions)
-  //           .then(async response => await response.json())
-  //           .then(result => {
-  //             // obj = result
-  //             // console.log('jetzt kommt temp, id, city name usw')
-  //             // console.log(result.main.temp)
-  //             // console.log(city.name)
-  //             city.temp = result.main.temp
-  //             city.weather = result.weather[0].description
-  //             city.icon = result.weather[0].icon
-  //             city.windspeed = result.wind.speed
-  //           })
-  //           .catch(error => console.log('error', error)))
-  //       })
-  //     })
-  // }
   },
   mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
    // console.log('Hello World!')
