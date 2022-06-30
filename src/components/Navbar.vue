@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-light navbar-dark bg-primary bg-opacity-50">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Wetter</a>
+      <a class="navbar-brand" href="/home">Wetter</a>
       <form class="d-flex needs-validation" id="citys-create-form" novalidate>
 
       </form>
