@@ -49,7 +49,7 @@
           <img :src= "`https://openweathermap.org/img/wn/${city.icon}@4x.png`"  style="max-height: 300px; max-width: 300px;" class="mx-auto d-block" :alt="city.name">
           <div class="card-body">
             <h5 class="card-title">
-              {{ city.name }}</h5>
+              {{ city.name }} </h5>
             <p class="card-text">
               <b> Temperatur:</b> <br>🌡️ {{city.temp}}° Celsius <br>
               <b> Wetterkondition:</b> <br> {{city.weather}}<br>
@@ -112,7 +112,7 @@ export default {
 
       const requestOptions = {
         method: 'POST',
-        headers: headers,
+        headers,
         body: city,
         redirect: 'follow'
       }
@@ -144,37 +144,35 @@ export default {
   },
     async reload () {
       this.render = false
-      var cities = this.citys
+      const cities = this.citys
       this.citys = cities
       await this.$nextTick()
       this.render = true
     },
-    async deleteCities () {
+    deleteCities: async function () {
 
       const requestOptions = {
         method: 'DELETE',
         redirect: 'follow'
       }
       console.log('Start delete')
-      // var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]
+      let newcity
+      this.newcity = this.citys.filter(city => city.id > 3)
+      console.log(this.newcity.toString())
+      for (const city of this.newcity) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity/' + city.id
+      console.log(endpoint)
 
-      var schritt
-      for (schritt = 3; schritt <= this.citys.length; schritt++) {
-        console.log(this.citys.length)
-        const id = schritt
-        const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity/' + id
-        console.log(endpoint)
+       await axios.delete(endpoint, requestOptions)
+        .then(response => {
+          console.log(response)
 
-        await axios.delete(endpoint, requestOptions)
-          .then(response => {
-            console.log(response)
-            return response
-          })
-          .catch(function (error) {
-             console.log(error)
-          })
-        }
-      console.log('Delete finished. Reloading...')
+          return response
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+}
 
       await this.methodThatForcesUpdate()
     },
