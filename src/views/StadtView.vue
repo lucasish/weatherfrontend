@@ -6,7 +6,7 @@
   <br>
   <button class="btn btn-primary" id="button" title="neue Stadt hinzufügen" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
   <div>
-  <button id="button3" class="btn btn-primary" title="löscht alle benutzerdefinierten Städte" type="submit" @click="deleteCities()" :key="componentKey">Alle Städte löschen</button>
+  <button id="button3" class="btn btn-primary" title="löscht alle benutzerdefinierten Städte" type="submit" @click.prevent="deleteCities()" :key="componentKey">Alle Städte löschen</button>
   </div>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -158,6 +158,13 @@ export default {
       console.log('Start delete')
       var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32]
 
+      console.log(this.citys.length)
+
+      var length = this.citys.length
+      var first = this.citys[0].id
+      console.log(first)
+
+
       for (const i of n) {
         const id = i
         const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity/' + id
@@ -183,7 +190,7 @@ export default {
   },
     methodThatForcesUpdate () {
       this.componentKey += 1
-      window.location.reload()
+      // window.location.reload()
     }
   },
   mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
