@@ -1,9 +1,11 @@
 <template>
+  <component-to-re-render :key="JSON.stringify(citys)" :data="citys">
+
   <br>
   <h1> Wetter </h1>
   <br>
   <button class="btn btn-primary" id="button" title="neue Stadt hinzufügen" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
-  <button id="button3" class="btn btn-primary" title="löscht alle benutzerdefinierten Städte" type="submit" @click.prevent="deleteCities()">Alle Städte löschen</button>
+  <button id="button3" class="btn btn-primary" title="löscht alle benutzerdefinierten Städte" type="submit" @click="deleteCities()" :key="componentKey">Alle Städte löschen</button>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
@@ -28,7 +30,7 @@
           </ul>
         </div>
         <div class="col-12">
-          <button id="button2" class="btn btn-primary" type="submit" @click.prevent="createCity()">Stadt hinzufügen</button>
+          <button id="button2" class="btn btn-primary" type="submit" @click="createCity()" :key="componentKey">Stadt hinzufügen</button>
           <br>
           <br>
            <button  id="button6" class="btn btn-primary" type="reset">Reset</button>
@@ -42,8 +44,7 @@
   <br>
 
 
-
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
         <div id="karte" class="card border-primary mb-3 w-75 h-auto justify-content-center">
@@ -62,6 +63,7 @@
       </div>
     </div>
   </div>
+ </component-to-re-render>
 
 </template>
 
@@ -73,7 +75,8 @@ export default {
     return {
       name: "",
       serverValidationMessages: [],
-      citys: []
+      citys: [],
+      componentKey: 0
     }
   },
   emits: ['created'],
@@ -120,10 +123,15 @@ export default {
       console.log("await fetch ok")
 
       await this.handleResponse(response)
-      console.log("await handle response ok")
-
+      console.log("await handle response ok. Reloading...")
+      // this.init()
     }
+    // this.methodThatForcesUpdate()
     console.log("validate vorbei")
+    // this.componentKey += 1
+    // this.componentKey += 1
+    // const abc = this.citys
+
   },
   async handleResponse (response) {
       if (await response.status === 201 || response.status === 200) {
@@ -146,7 +154,7 @@ export default {
         redirect: 'follow'
       }
       console.log('Start delete')
-      var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+      var n = [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]
       n.forEach(i=>{
         const id = i
         const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity/' + id
@@ -159,16 +167,50 @@ export default {
             console.log(error)
           })
       })
-      console.log('Delete finished')
+      console.log('Delete finished. Reloading...')
+      this.componentKey++
     },
   validate () {
     const form = document.getElementById('city-create-form')
     form.classList.add('was-validated')
     return form.checkValidity()
-  }
+  },
+    methodThatForcesUpdate () {
+      this.componentKey += 1
+    }
+  // init () {
+  //   const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     redirect: 'follow'
+  //   }
+  //   fetch(endpoint, requestOptions)
+  //     .then(response => response.json())
+  //     .then(result => result.forEach(city => {
+  //       this.citys.push(city)
+  //     }))
+  //     .then(citys => {
+  //       return this.citys.forEach(city => {
+  //         (fetch(`https://api.openweathermap.org/data/2.5/weather?appid=8f72af7c99ac2ff422253044302e41c7&q=${city.name}&units=metric&lang=de`, requestOptions)
+  //           .then(async response => await response.json())
+  //           .then(result => {
+  //             // obj = result
+  //             // console.log('jetzt kommt temp, id, city name usw')
+  //             // console.log(result.main.temp)
+  //             // console.log(city.name)
+  //             city.temp = result.main.temp
+  //             city.weather = result.weather[0].description
+  //             city.icon = result.weather[0].icon
+  //             city.windspeed = result.wind.speed
+  //           })
+  //           .catch(error => console.log('error', error)))
+  //       })
+  //     })
+  // }
   },
   mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
    // console.log('Hello World!')
+   //  this.init()
     const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
     const requestOptions = {
       method: 'GET',
