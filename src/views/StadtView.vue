@@ -8,7 +8,7 @@
 
   <button id="button3" class="btn btn-primary" title="löscht alle benutzerdefinierten Städte" type="submit" @click="deleteCities()" :key="componentKey">Alle Städte löschen</button>
 
-
+<!-- offcanvas begin -->
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Wetterabfrage</h5>
