@@ -1,18 +1,18 @@
 <template>
-  <component-to-re-render :key="JSON.stringify(citys)" :data="citys">
+ <!--<component-to-re-render :key="JSON.stringify(citys)" :data="citys"> -->
 
   <br>
   <h1> Wetter </h1>
   <br>
   <button class="btn btn-primary" id="button" title="neue Stadt hinzufügen" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Neue Stadt hinzufügen</button>
-  <div>
+
   <button id="button3" class="btn btn-primary" title="löscht alle benutzerdefinierten Städte" type="submit" @click="deleteCities()" :key="componentKey">Alle Städte löschen</button>
-  </div>
+
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Wetterabfrage</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <button type="button" id="close-offcanvas" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
       <p>Hier kannst du eine neue Stadt zur Wetterabfrage hinzufügen und speichern.</p>
@@ -42,6 +42,7 @@
   </div>
   <br>
   <br>
+   <component-to-re-render :key="JSON.stringify(citys)" :data="citys">
   <div class="container-fluid"  v-if='render'>
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="city in citys" :key="city.id">
@@ -61,7 +62,7 @@
       </div>
     </div>
   </div>
- </component-to-re-render>
+</component-to-re-render>
 
 </template>
 
@@ -125,12 +126,13 @@ export default {
       console.log("await handle response ok. Reloading...")
     }
     console.log("validate vorbei")
-
+    await this.methodThatForcesUpdate()
 
   },
   async handleResponse (response) {
       if (await response.status === 201 || response.status === 200) {
       this.$emit('created', response.headers.get('location'))
+        document.getElementById('close-offcanvas').click()
         console.log("200")
       } else if (response.status === 404 || response.status === 400) {
       response = await response.json()
@@ -186,8 +188,8 @@ export default {
       window.location.reload()
     }
   },
-  mounted: async function () { // code wird immer beim neuladen der seite ausgeführt:
-
+  mounted: async function () {
+    // code wird immer beim neuladen der seite ausgeführt:
     const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/weatherofcity'
     const requestOptions = {
       method: 'GET',
@@ -216,7 +218,7 @@ export default {
 </script>
 
 <style scoped>
-#button {border-radius: 50px; margin: 10px; }
+#button {border-radius: 50px; margin: 10px;}
 #button2 {border-radius: 50px;}
 #button6 {border-radius: 50px}
 #button3 {border-radius: 50px}

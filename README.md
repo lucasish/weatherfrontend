@@ -4,6 +4,8 @@
 
 #Funktionsweise
 
+Je nach Browser sieht man das Logo im Tab. 
+
 Die Navigation über die Seiten geschieht über die Navbar oben rechts. 
 
 Unter Home: Bekommt der User eine kurze Einweisung in unsere App. 

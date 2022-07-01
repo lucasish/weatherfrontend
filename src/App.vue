@@ -5,12 +5,12 @@
 
 <script>
 import Navbar from './components/Navbar'
-import HelloWorld from '@/components/HelloWorld'
+
 
 export default {
   name: 'App',
   // eslint-disable-next-line vue/no-unused-components
-  components: { Navbar, HelloWorld }
+  components: { Navbar}
 }
 </script>
 
